@@ -1,0 +1,15 @@
+.App__header {
+  height: 65px;
+  background-color: aquamarine;
+}
+
+.App__header__nav {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.App__header__nav a {
+  margin-left: 20px;
+  cursor: pointer;
+}
