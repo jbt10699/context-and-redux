@@ -1,5 +1,7 @@
 import React, { useContext } from 'react';
 import { useCounter } from '../hooks/useCounter'
+import useLoading from "../hooks/useLoading";
+
 
 export const StockContext = React.createContext(null);
 
@@ -7,8 +9,8 @@ export const withStockContext = (WrappedComponent) => {
     return class NewComponent extends React.Component {
         static contextType = StockContext;
         render() {
-            const [counter, handleAdd, handleSub, handleSetOption] = this.context;
-            return <WrappedComponent {...this.props} counter={counter} handleAdd={handleAdd} handleSub={handleSub} handleSetOption={handleSetOption} />
+            const [stockAmount, buyStock, sellStock, setStockOption] = this.context;
+            return <WrappedComponent {...this.props} stockAmount={stockAmount} buyStock={buyStock} sellStock={sellStock} setStockOption={setStockOption} />
         }
     }
 }
@@ -19,17 +21,17 @@ export const useStockContext = () => {
 
 export const StockContextProvider = (props) => {
     const [
-        counter,
-        increment,
-        decrement,
-        setOption
+        stockAmount,
+        buyStock,
+        sellStock,
+        setStockOption
     ] = useCounter()
 
     return <StockContext.Provider value={[
-        counter,
-        increment,
-        decrement,
-        setOption
+        stockAmount,
+        buyStock,
+        sellStock,
+        setStockOption
     ]}>
         {props.children}
     </StockContext.Provider>
